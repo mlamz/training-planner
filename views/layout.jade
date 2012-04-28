@@ -1,0 +1,21 @@
+!!!
+head
+	title training planner
+
+body
+	div.page
+		- if (!user) {
+			p
+				a(href='/') Home
+				span  | 
+				a(href='/login') Log In
+		- } else {
+			p
+				a(href='/') Home
+				span  | 
+				a(href='/account') Account
+				span  | 
+				a(href='/logout') Log out
+		- }
+
+		!= body
