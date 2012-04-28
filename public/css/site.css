@@ -1,0 +1,31 @@
+.column
+{
+	float:left;
+}
+.clear
+{
+	clear:both;
+}
+.weekly-table-segment
+{
+	padding: 2px;
+	height: 100px;
+	border: solid 1px #DDDDDD;
+	margin: 2px;
+}
+.weekly-table-day
+{
+	width: 110px;
+}
+.weekly-table-week-number
+{
+	width: 75px;
+}
+.weekly-table-week
+{
+	width: 100%;
+}
+.weekly-table-week-total
+{
+	width: 150px;
+}
