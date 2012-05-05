@@ -14,10 +14,14 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 	        			console.log("rendering day options");
 	        		},
 	        		events: {
-	        			"click .close-button": "close"
+	        			"click .close-button": "close",
+	        			"click #add-workout" : "showAddWorkoutForm"
 	        		},
 	        		close: function() {
 	        			$('#day-options').fadeOut("fast");
+	        		},
+	        		showAddWorkoutForm: function(){
+	        			$('#day-options-add-workout-form').fadeIn("fast");
 	        		}
 	        	});
 

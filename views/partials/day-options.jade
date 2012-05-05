@@ -7,3 +7,32 @@
 
 	div.column#day-options-control #{user.username}'s planned workouts for 
 		span#day-options-date
+		div#day-options-add-workout-form
+			div.column.add-workout-form-label Workout type
+			div.column.add-workout-form-field
+				select(name='workout-type')
+					option(value='training') training
+					option(value='sportive') sportive
+					option(value='time trial') time trial
+					option(value='race') race
+					option(value='recovery ride') recovery ride
+
+			div.clear
+
+			div.column.add-workout-form-label Estimated duration
+			div.column.add-workout-form-field
+				select(name='workout-duration')
+					option(value='0.5') 0.5 hrs
+					option(value='1.0') 1.0 hrs
+					option(value='1.5') 1.5 hrs
+					option(value='2.0') 2.0 hrs
+					option(value='2.5') 2.5 hrs
+					option(value='3.0') 3.0 hrs
+					option(value='3.5') 3.5 hrs
+					option(value='4.0') 4.0 hrs
+					option(value='4.5') 4.5 hrs
+					option(value='5.0') 5.0 hrs
+					option(value='5.5') 5.5 hrs
+					option(value='6.0') 6.0 hrs
+
+
