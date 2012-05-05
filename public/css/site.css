@@ -16,6 +16,8 @@
 .weekly-table-day
 {
 	width: 110px;
+	cursor: hand;
+	cursor: pointer;
 }
 .weekly-table-week-number
 {
@@ -28,4 +30,66 @@
 .weekly-table-week-total
 {
 	width: 150px;
+}
+#day-options
+{
+	display: none;
+	width: 800px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -400px;
+	margin-top: -200px;
+	background-color: #DDDDDD;
+	border: solid 1px #AAAAAA;
+}
+#day-options-close
+{
+	width: 800px;
+	height: 30px;
+	float: left;
+}
+.close-button
+{
+	background-color: #CCCCCC;
+	border: solid 1px #AAAAAA;
+	width: 50px;
+	height: 20px;
+	padding: 2px;
+	text-align: center;
+	margin: 5px 5px;
+	cursor: hand;
+	cursor: pointer;
+}
+.close-button:hover
+{
+	background-color: #AAAAAA;
+}
+.right
+{
+	float: right;
+	display: block;
+}
+.column
+{
+	float: left;
+	display: block;
+}
+
+#day-options-navigation
+{
+	width: 100px;
+	height: 360px;
+	border: solid 1px #AAAAAA;
+	margin: 4px 4px;
+	background-color: #eeeeee;
+}
+#day-options-control
+{
+	width: 680px;
+	height: 360px;
+	border: solid 1px #AAAAAA;
+	margin: 4px 4px;
+	background-color: #eeeeee;
 }
