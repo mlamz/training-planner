@@ -35,7 +35,7 @@ h5
 {
 	padding: 2px;
 	height: 100px;
-	border: solid 1px #AAAAAA;
+	border: solid 1px #577A02;
 	margin: 2px;
 }
 .weekly-table-day
@@ -44,6 +44,10 @@ h5
 	cursor: hand;
 	cursor: pointer;
 	background-color: #DFF0B6;
+}
+.weekly-table-day:hover
+{
+	background-color: #ABCC5A;
 }
 .weekly-table-day .date
 {
@@ -76,8 +80,8 @@ h5
 	left: 50%;
 	margin-left: -400px;
 	margin-top: -200px;
-	background-color: #96D100;
-	border: solid 1px #AAAAAA;
+	background-color: #ABCC5A;
+	border: solid 2px #577A02;
 	z-index: 1000;
 }
 #day-options-close
@@ -88,8 +92,8 @@ h5
 }
 .close-button
 {
-	background-color: #CCCCCC;
-	border: solid 1px #AAAAAA;
+	background-color: #DDDDDD;
+	border: solid 1px #577A02;
 	width: 50px;
 	height: 20px;
 	padding: 2px;
@@ -100,7 +104,7 @@ h5
 }
 .close-button:hover
 {
-	background-color: #AAAAAA;
+	background-color: #FFFFFF;
 }
 .right
 {
@@ -115,17 +119,20 @@ h5
 
 #day-options-navigation
 {
-	width: 100px;
-	height: 360px;
-	border: solid 1px #AAAAAA;
+	width: 90px;
+	height: 352px;
+	border: solid 1px #577A02;
 	margin: 4px 4px;
 	background-color: #eeeeee;
+	padding: 4px 4px;
 }
 #day-options-control
 {
-	width: 680px;
-	height: 360px;
-	border: solid 1px #AAAAAA;
+	width: 673px;
+	height: 352px;
+	border: solid 1px #577A02;
 	margin: 4px 4px;
 	background-color: #eeeeee;
+	padding: 4px 4px;
+
 }
