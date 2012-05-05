@@ -10,4 +10,6 @@ p The training plan maker is based upon Joe Friel's periodization model of train
 	h2 Welcome, please log in.
 - } else {
 	!=partial('partials/weekly-table', { locals: { user: user } })
+
+	!=partial('partials/day-options', { locals: { user: user } })
 - }

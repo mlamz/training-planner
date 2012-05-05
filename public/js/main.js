@@ -14,7 +14,11 @@ require(['app', 'json2'], function(app) {
     app.initialize();
 });
 
-require(['views/weekly-table-view'], function(weeklyTableView) {
+require(['date/custom-date-functions'], function(customDateFunctions){
+	customDateFunctions.initialize();
+});
+
+require(['date/date-format', 'date/custom-date-functions', 'views/weekly-table-view'], function(dateFormat, customDateFunctions, weeklyTableView) {
     weeklyTableView.initialize();
 });
 
