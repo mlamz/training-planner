@@ -10,18 +10,15 @@ require.config({
 
 });
 
-require(['app', 'json2'], function(app) {
-    app.initialize();
-});
-
-require(['date/custom-date-functions'], function(customDateFunctions){
-	customDateFunctions.initialize();
-});
-
-require(['date/date-format', 'date/custom-date-functions', 'views/weekly-table-view'], function(dateFormat, customDateFunctions, weeklyTableView) {
-    weeklyTableView.initialize();
-});
-
-require(['views/day-options-view'], function(dayOptionsView) {
-    dayOptionsView.initialize();
-});
+require([	'date/date-format', 
+			'date/custom-date-functions', 
+			'models/workout', 
+			'collections/workout-collection', 
+			'views/weekly-table-view',
+			'views/day-options-view'
+		], 
+		function(dateFormat, customDateFunctions, workoutModel, workoutCollection, weeklyTableView, dayOptionsView) {
+		    customDateFunctions.initialize();
+		    weeklyTableView.initialize();
+		    dayOptionsView.initialize();
+		});

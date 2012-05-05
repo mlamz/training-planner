@@ -14,6 +14,8 @@ body, .body-style
 	left: 50%;
 	margin-left: -600px;
 	padding: 10px 45px;
+	border-left: solid 3px #577A02;
+	border-right: solid 3px #577A02;
 }
 h5
 {
@@ -125,6 +127,21 @@ h5
 	margin: 4px 4px;
 	background-color: #eeeeee;
 	padding: 4px 4px;
+}
+#day-options-navigation button
+{
+	width: 87px;
+	height: 16px;
+	border: solid 1px #577A02;
+	margin: 1px 1px;
+	background-color: #eeeeee;
+	font-size: 0.7em;
+	cursor: pointer;
+	cursor: hand;
+}
+#day-options-navigation button:hover
+{
+	background-color: #ABCC5A;
 }
 #day-options-control
 {
