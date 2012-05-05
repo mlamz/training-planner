@@ -6,10 +6,45 @@ define(['jquery', 'underscore', 'backbone', 'router'],
 	        	var WeeklyTableView = Backbone.View.extend({
 	        		el:$('#weekly-table'),
 	        		initialize: function() {
-	        			var today = new Date()
-	        			,	firstJan = new Date(new Date().getFullYear(),0,1)
-	        			,	firstSunday = firstJan.getDay()
+	        			var today 		= new Date()
+	        			,	thisYear 	= new Date().getFullYear()
+	        			,	firstJan
+	        			,	firstSunday
 	        			,	todaysDayElement;
+
+	        			populateYearPicker(thisYear);
+
+	        			populateCalendar(thisYear);
+
+	        			
+	        		},
+	        		events: {
+	        			"change #year-picker": "selectYear",
+	        			"click .weekly-table-day": "openDayOptions"
+	        			
+	        		},
+	        		openDayOptions: function(e) {
+	        			var date = new Date(Date.parse($(e.currentTarget).attr('data-date')));
+	        			$("#day-options-date").html(dateFormat(date, "dddd, mmmm dS, yyyy"));
+	        			$('#day-options').fadeIn("fast");
+	        		},
+	        		selectYear: function(e) {
+	        			console.log($(e.currentTarget).val());
+	        			populateCalendar($(e.currentTarget).val());
+	        		}
+	        	});
+
+	        	var weeklyTableView = new WeeklyTableView();
+
+	        	function populateYearPicker(thisYear){
+	        		$("#year-picker").append("<option value='" + (thisYear - 1) + "'>" + (thisYear - 1) + "</option>");
+        			$("#year-picker").append("<option selected='selected' value='" + thisYear + "'>" + thisYear + "</option>");
+        			$("#year-picker").append("<option value='" + (thisYear + 1) + "'>" + (thisYear + 1) + "</option>");
+	        	}
+
+	        	function populateCalendar(thisYear){
+	        		firstJan = new Date(thisYear,0,1);
+	        			firstSunday = firstJan.getDay();
 
 	        			$(".weekly-table-day").each(function(){
 	        				var dataDayValue = $(this).attr('data-day');
@@ -19,23 +54,13 @@ define(['jquery', 'underscore', 'backbone', 'router'],
 	        				$(this).children(".date").html(dateFormat(dateOfThisDay, "mmmm d"));
 	        			});
 
-	        			todaysDayElement = $(".weekly-table-day[data-date*='" + dateFormat(today, "mmmm dd") +"']");
-	        			console.log("today's day element", todaysDayElement);
-	        			todaysDayElement.addClass("today");
+	        		$(".weekly-table-day").removeClass("today");
 
-
-	        		},
-	        		events: {
-	        			"click .weekly-table-day": "openDayOptions"
-	        		},
-	        		openDayOptions: function(e) {
-	        			var date = new Date(Date.parse($(e.currentTarget).attr('data-date')));
-	        			$("#day-options-date").html(dateFormat(date, "dddd, mmmm dS, yyyy"));
-	        			$('#day-options').fadeIn("fast");
-	        		}
-	        	});
-
-	        	var weeklyTableView = new WeeklyTableView();
+	        		if (thisYear == new Date().getFullYear()){
+	        			todaysDayElement = $(".weekly-table-day[data-date*='" + dateFormat(new Date(), "mmmm dd") +"']");
+        				todaysDayElement.addClass("today");
+        			}
+	        	}
 	        }
 	    };
 
