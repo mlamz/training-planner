@@ -24,9 +24,14 @@ define(['jquery', 'underscore', 'backbone', 'router'],
 	        			
 	        		},
 	        		openDayOptions: function(e) {
-	        			var date = new Date(Date.parse($(e.currentTarget).attr('data-date')));
-	        			$("#day-options-date").html(dateFormat(date, "dddd, mmmm dS, yyyy"));
-	        			$('#day-options').fadeIn("fast");
+	        			console.log("open day options");
+	        			var date 			= new Date(Date.parse($(e.currentTarget).attr('data-date')))
+	        			,	formattedDate 	= dateFormat(date, "dddd, mmmm dS, yyyy");
+
+	        			console.log(formattedDate);
+
+	        			$("#day-options-date").html(formattedDate);
+	        			$('#day-options').fadeIn("fast", function(){console.log($('#day-options').position());});
 	        		},
 	        		selectYear: function(e) {
 	        			console.log($(e.currentTarget).val());

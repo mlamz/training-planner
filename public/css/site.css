@@ -1,10 +1,35 @@
-.column
+body, .body-style 
 {
-	float:left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+    background-color: #96D100;
+    margin: 0;
+    line-height: 1.8em;
+}
+.page
+{
+	background-color: White;
+	width: 1096px;
+	position: absolute;
+	left: 50%;
+	margin-left: -600px;
+	padding: 10px 45px;
+}
+h5
+{
+	font-size: 1.3em;
 }
 .clear
 {
 	clear:both;
+}
+#year-picker
+{
+	margin-left: 10px;
+}
+#choose-year
+{
+	margin-bottom: 10px;
 }
 .weekly-table-segment
 {
@@ -18,6 +43,7 @@
 	width: 110px;
 	cursor: hand;
 	cursor: pointer;
+	background-color: #DFF0B6;
 }
 .weekly-table-day .date
 {
@@ -26,7 +52,7 @@
 }
 .today
 {
-	background-color: #D6F783;
+	background-color: #C8E67C;
 }
 .weekly-table-week-number
 {
@@ -45,13 +71,14 @@
 	display: none;
 	width: 800px;
 	height: 400px;
-	position: absolute;
+	position: fixed;
 	top: 50%;
 	left: 50%;
 	margin-left: -400px;
 	margin-top: -200px;
-	background-color: #DDDDDD;
+	background-color: #96D100;
 	border: solid 1px #AAAAAA;
+	z-index: 1000;
 }
 #day-options-close
 {

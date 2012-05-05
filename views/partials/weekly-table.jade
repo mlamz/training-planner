@@ -1,8 +1,9 @@
 h5 Hello, #{user.username}
 
 #weekly-table
-	label(name='year-picker') Choose year
-		select#year-picker(name='year-picker')
+	#choose-year
+		label(name='year-picker') Choose year
+			select#year-picker(name='year-picker')
 
 
 	- { for(var i = 1;i<=52;i++) 
