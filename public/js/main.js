@@ -14,11 +14,9 @@ require([	'date/date-format',
 			'date/custom-date-functions', 
 			'models/workout', 
 			'collections/workout-collection', 
-			'views/weekly-table-view',
-			'views/day-options-view'
+			'views/weekly-table-view'
 		], 
-		function(dateFormat, customDateFunctions, workoutModel, workoutCollection, weeklyTableView, dayOptionsView) {
+		function(dateFormat, customDateFunctions, workoutModel, workoutCollection, weeklyTableView) {
 		    customDateFunctions.initialize();
 		    weeklyTableView.initialize();
-		    dayOptionsView.initialize();
 		});
