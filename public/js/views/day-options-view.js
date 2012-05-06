@@ -26,6 +26,8 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     		close: function() {
     			$('#day-options').fadeOut("fast");
 		        $(this.el).unbind();
+                this.options.parentView.populateCalendarWorkouts();
+                console.log($(this.options.parentView));
     		},
     		showAddWorkoutForm: function(){
     			$('#day-options-add-workout-form').fadeIn("fast");

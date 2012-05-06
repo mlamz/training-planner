@@ -55,6 +55,21 @@ h5
 {
 	font-size: 0.9em;
 	color: #333333;
+	line-height: 0.9em;
+	margin-bottom: 5px;
+}
+.weekly-table-day .calendar-workout-item
+{
+	font-size: 0.7em;
+	display: block;
+	line-height: 0.9em;
+	width: 105px;
+	height: 11px;
+	border: solid 1px #577A02;
+	margin-bottom: 1px;
+	background-color: #9ABCD9;
+	padding-top: 1px;
+	padding-left: 3px;
 }
 .today
 {
@@ -171,4 +186,4 @@ h5
 .clear: 
 {
 	clear: both;
-};
+}

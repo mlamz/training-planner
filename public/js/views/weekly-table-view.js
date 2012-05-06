@@ -17,19 +17,16 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 
 	        			populateYearPicker(thisYear);
 
-	        			populateCalendar(thisYear);
+	        			populateCalendarDates(thisYear);
+
+	        			this.populateCalendarWorkouts();
 	        		},
 	        		events: {
 	        			"change #year-picker": "selectYear",
-	        			"click .weekly-table-day": "openDayOptions"
-	        			
+	        			"click .weekly-table-day": "openDayOptions"	        			
 	        		},
 	        		openDayOptions: function(e) {
 	        			console.log("open day options");
-
-	        			//append data-date to submit workout button so the event isn;t fired multiple times to other views hanging about in memory
-
-
 	        			var date 			= new Date(Date.parse($(e.currentTarget).attr('data-date')))
 	        			,	formattedDate 	= dateFormat(date, "dddd, mmmm dS, yyyy");
 
@@ -38,12 +35,34 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 	        			$('#day-options').fadeIn("fast");
 	        			console.log("date passed to day options view", date);
 
-	        			new DayOptionsView({  date: date, collection: this.collection });
+	        			new DayOptionsView({  date: date, collection: this.collection, parentView: this });
 	        		},
 	        		selectYear: function(e) {
 	        			console.log($(e.currentTarget).val());
-	        			populateCalendar($(e.currentTarget).val());
-	        		}	        		
+	        			populateCalendarDates($(e.currentTarget).val());
+	        			this.populateCalendarWorkouts();
+	        		},
+	        		populateCalendarWorkouts: function(){
+	        			var workoutsAndDates = [];
+	        			
+    					$(".weekly-table-day").children(".workout-data").html("");
+						
+	        			console.log("populating calendar workouts");
+
+	        			_(this.collection.models).each(function(workout){
+	        				var workoutDate = workout.get('date');
+	        				if ($(".weekly-table-day[data-date='" + workoutDate + "']") != null){
+	        					console.log("day found for workout");
+								$(".weekly-table-day[data-date='" + workoutDate + "']").children(".workout-data")
+									.append("<span class='calendar-workout-item'>"
+												+ workout.get('type') 
+												+ ", " 
+												+ workout.get('duration') + "hrs</span>");
+
+	        					workoutsAndDates.push([workoutDate, workout]);
+	        				}
+						}, this);
+	        		}       		
 	        	});
 
 	        	var weeklyTableView = new WeeklyTableView();
@@ -54,7 +73,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
         			$("#year-picker").append("<option value='" + (thisYear + 1) + "'>" + (thisYear + 1) + "</option>");
 	        	}
 
-	        	function populateCalendar(thisYear){
+	        	function populateCalendarDates(thisYear){
 	        		firstJan = new Date(thisYear,0,1);
 	        			firstSunday = firstJan.getDay();
 
