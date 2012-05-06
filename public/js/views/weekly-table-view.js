@@ -26,40 +26,36 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 	        			"click .weekly-table-day": "openDayOptions"	        			
 	        		},
 	        		openDayOptions: function(e) {
-	        			console.log("open day options");
 	        			var date 			= new Date(Date.parse($(e.currentTarget).attr('data-date')))
 	        			,	formattedDate 	= dateFormat(date, "dddd, mmmm dS, yyyy");
 
 	        			$("#day-options-date").html(formattedDate);
 	        			$('#day-options').attr("data-date", date);
 	        			$('#day-options').fadeIn("fast");
-	        			console.log("date passed to day options view", date);
 
 	        			new DayOptionsView({  date: date, collection: this.collection, parentView: this });
 	        		},
 	        		selectYear: function(e) {
-	        			console.log($(e.currentTarget).val());
 	        			populateCalendarDates($(e.currentTarget).val());
 	        			this.populateCalendarWorkouts();
 	        		},
 	        		populateCalendarWorkouts: function(){
-	        			var workoutsAndDates = [];
-	        			
     					$(".weekly-table-day").children(".workout-data").html("");
-						
-	        			console.log("populating calendar workouts");
 
 	        			_(this.collection.models).each(function(workout){
-	        				var workoutDate = workout.get('date');
-	        				if ($(".weekly-table-day[data-date='" + workoutDate + "']") != null){
-	        					console.log("day found for workout");
-								$(".weekly-table-day[data-date='" + workoutDate + "']").children(".workout-data")
-									.append("<span class='calendar-workout-item'>"
+	        				var workoutDate = workout.get('date')
+	        				,	workoutTableDayElement = $(".weekly-table-day[data-date='" + workoutDate + "']");
+	        				if (workoutTableDayElement != null){
+								workoutTableDayElement.children(".workout-data")
+									.append("<span class='calendar-workout-item' data-workout-type='"
+												+ workout.get('type') 
+												+"' data-workout-duration='" 
+												+ workout.get('duration') 
+												+ "'>"
 												+ workout.get('type') 
 												+ ", " 
-												+ workout.get('duration') + "hrs</span>");
-
-	        					workoutsAndDates.push([workoutDate, workout]);
+												+ workout.get('duration') 
+												+ "hrs</span>");
 	        				}
 						}, this);
 	        		}       		

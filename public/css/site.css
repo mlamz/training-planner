@@ -46,6 +46,7 @@ h5
 	cursor: hand;
 	cursor: pointer;
 	background-color: #DFF0B6;
+	overflow: hidden;
 }
 .weekly-table-day:hover
 {
@@ -172,8 +173,6 @@ h5
 {
 	display: none;
 	width: 672px;
-	height: 328px;
-	background-color: #dddddd;
 }
 .add-workout-form-label
 {

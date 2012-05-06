@@ -4,16 +4,13 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     	var DayOptionsView = Backbone.View.extend({
     		el:$('#day-options'),
     		initialize: function() {
-    			console.log("initialising day options view with " + this.options.collection.models.length + "workouts total");
 			  	this.bind("click", this.render, this);
-
     			this.render();
     		},
     		render: function(){
     			$("#workouts").html("");
     			_(this.options.collection.models).each(function(workout){
 					if (dateFormat(workout.get('date'), "mmmm d, yyyy") == dateFormat(this.options.date, "mmmm d, yyyy")){
-						console.log("dates are the same");
 						$("#workouts").append("<li class='workout-item'>" + dateFormat(workout.get('date'), "dddd, mmmm dS, yyyy") + ", " + workout.get('type') + ", " + workout.get('duration') + "hrs</li>");	
 					}
 				}, this);
@@ -27,7 +24,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     			$('#day-options').fadeOut("fast");
 		        $(this.el).unbind();
                 this.options.parentView.populateCalendarWorkouts();
-                console.log($(this.options.parentView));
     		},
     		showAddWorkoutForm: function(){
     			$('#day-options-add-workout-form').fadeIn("fast");
