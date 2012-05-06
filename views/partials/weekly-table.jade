@@ -1,12 +1,14 @@
 h5 Hello, #{user.username}
 
 #weekly-table
+
+script#weekly-table-template(type='text/template')
 	#choose-year
 		label(name='year-picker') Choose year
 			select#year-picker(name='year-picker')
 
 
-	- { for(var i = 1;i<=52;i++) 
+	- { for(var i = 1;i<=53;i++) 
 		div.weekly-table-week(id='weekly-table-week#{i}',data-week-number='#{i}')
 			div.column.weekly-table-segment.weekly-table-week-number(data-week='#{i}') Week #{i}
 			div.column.weekly-table-segment.weekly-table-day(data-day='#{1 + 7 * (i - 1)}') Sunday
@@ -35,3 +37,5 @@ h5 Hello, #{user.username}
 			div.clear
 	- }
 
+script#calendar-workout-item-template(type='text/template')
+	span.calendar-workout-item(data-workout-type="<%= workout_type %>",data-workout-duration='<%= workout_duration %>') <%= workout_type %>, <%= workout_duration %>hrs

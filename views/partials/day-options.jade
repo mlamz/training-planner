@@ -1,4 +1,6 @@
 #day-options
+
+script#day-options-template(type='text/template')
 	#day-options-close
 		button.close-button.right close x
 
@@ -44,3 +46,5 @@
 			button#submit-workout add workout
 
 
+script#day-options-workout-list-template(type='text/template')
+	li.calendar-workout-item(data-workout-type='<%= workout_type %>',data-workout-duration='<%= workout_duration %>') <%= workout_type %>, <%= workout_duration %>hrs

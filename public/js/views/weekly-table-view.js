@@ -5,7 +5,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 	        initialize: function() {
 	        	var WeeklyTableView = Backbone.View.extend({
 	        		el:$('#weekly-table'),
-
 	        		initialize: function() {
 	        			var today 		= new Date()
 	        			,	thisYear 	= new Date().getFullYear()
@@ -15,11 +14,12 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 
 	        			this.collection = new WorkoutCollection();
 
-	        			populateYearPicker(thisYear);
+	        			this.render();
 
-	        			populateCalendarDates(thisYear);
-
-	        			this.populateCalendarWorkouts();
+	        			this.populateCalendar(thisYear);	        			
+	        		},
+	        		render: function(){
+	        			$(this.el).html($("#weekly-table-template").html());
 	        		},
 	        		events: {
 	        			"change #year-picker": "selectYear",
@@ -29,33 +29,42 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 	        			var date 			= new Date(Date.parse($(e.currentTarget).attr('data-date')))
 	        			,	formattedDate 	= dateFormat(date, "dddd, mmmm dS, yyyy");
 
+	        			new DayOptionsView({  date: date, collection: this.collection, parentView: this });
+
 	        			$("#day-options-date").html(formattedDate);
 	        			$('#day-options').attr("data-date", date);
 	        			$('#day-options').fadeIn("fast");
-
-	        			new DayOptionsView({  date: date, collection: this.collection, parentView: this });
 	        		},
 	        		selectYear: function(e) {
 	        			populateCalendarDates($(e.currentTarget).val());
 	        			this.populateCalendarWorkouts();
 	        		},
+	        		populateCalendar: function(thisYear) {
+	        			populateYearPicker(thisYear);
+
+	        			populateCalendarDates(thisYear);
+
+	        			this.populateCalendarWorkouts();
+	        		},
 	        		populateCalendarWorkouts: function(){
+
     					$(".weekly-table-day").children(".workout-data").html("");
 
 	        			_(this.collection.models).each(function(workout){
 	        				var workoutDate = workout.get('date')
-	        				,	workoutTableDayElement = $(".weekly-table-day[data-date='" + workoutDate + "']");
+	        				,	workoutTableDayElement = $(".weekly-table-day[data-date='" + workoutDate + "']")
+	        				,	workoutDetails
+                    		,   template;
+
+                    		workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration') };
+                    		$("#calendar-workout-item-template").html(
+                    			$("#calendar-workout-item-template").html().replace(new RegExp('&lt;', 'g'),'<').replace(new RegExp('&gt;', 'g'),'>')
+                    		);
+
+                    		template = _.template($("#calendar-workout-item-template").html(), workoutDetails );
 	        				if (workoutTableDayElement != null){
 								workoutTableDayElement.children(".workout-data")
-									.append("<span class='calendar-workout-item' data-workout-type='"
-												+ workout.get('type') 
-												+"' data-workout-duration='" 
-												+ workout.get('duration') 
-												+ "'>"
-												+ workout.get('type') 
-												+ ", " 
-												+ workout.get('duration') 
-												+ "hrs</span>");
+									.append(template);
 	        				}
 						}, this);
 						populateWeeklyTotals();

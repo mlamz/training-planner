@@ -4,16 +4,11 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     	var DayOptionsView = Backbone.View.extend({
     		el:$('#day-options'),
     		initialize: function() {
-			  	this.bind("click", this.render, this);
+                this.updateWorkouts();
     			this.render();
     		},
     		render: function(){
-    			$("#workouts").html("");
-    			_(this.options.collection.models).each(function(workout){
-					if (workout.get('date') == this.options.date){
-						$("#workouts").append("<li class='workout-item'>" + workout.get('type') + ", " + workout.get('duration') + "hrs</li>");	
-					}
-				}, this);
+    			$(this.el).html($("#day-options-template").html());
     		},
     		events: {
     			"click .close-button": "close",
@@ -30,20 +25,29 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     		},
     		submitWorkout: function(){
     			var workout = new Workout({
-    				type : $("select#workout-type").val(),
-    				duration: $("select#workout-duration").val(),
-    				date: this.options.date
-    			});
+        				type : $("select#workout-type").val(),
+        				duration: $("select#workout-duration").val(),
+        				date: this.options.date
+    		          })
+                ,   self = this;
     			this.options.collection.add(workout);
 
-    			var self = this;
     			$('#day-options-add-workout-form').fadeOut("fast", function(){
-    				self.render();
+    				self.updateWorkouts();
     			});
-    		}
+    		},
+            updateWorkouts: function(){
+               $("#workouts").html("");
+                _(this.options.collection.models).each(function(workout){
+                    var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration') }
+                    ,   template = _.template( $("#day-options-workout-list-template").html(), workoutDetails );
+
+                    if (workout.get('date') == this.options.date){
+                        $("#workouts").append(template);
+                    }
+                }, this); 
+            }
     	});
 
 		return DayOptionsView;
-
-
 });
