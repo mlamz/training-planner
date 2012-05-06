@@ -10,8 +10,8 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     		render: function(){
     			$("#workouts").html("");
     			_(this.options.collection.models).each(function(workout){
-					if (dateFormat(workout.get('date'), "mmmm d, yyyy") == dateFormat(this.options.date, "mmmm d, yyyy")){
-						$("#workouts").append("<li class='workout-item'>" + dateFormat(workout.get('date'), "dddd, mmmm dS, yyyy") + ", " + workout.get('type') + ", " + workout.get('duration') + "hrs</li>");	
+					if (workout.get('date') == this.options.date){
+						$("#workouts").append("<li class='workout-item'>" + workout.get('type') + ", " + workout.get('duration') + "hrs</li>");	
 					}
 				}, this);
     		},

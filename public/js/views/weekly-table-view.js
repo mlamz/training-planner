@@ -58,6 +58,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 												+ "hrs</span>");
 	        				}
 						}, this);
+						populateWeeklyTotals();
 	        		}       		
 	        	});
 
@@ -87,6 +88,32 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 	        			todaysDayElement = $(".weekly-table-day[data-date*='" + dateFormat(new Date(), "mmmm dd") +"']");
         				todaysDayElement.addClass("today");
         			}
+	        	}
+
+	        	function populateWeeklyTotals(){
+	        		var weeklyDurations = [];
+
+	        		$(".weekly-table-week").each(function(){
+	        			var week = this;
+
+	        			$(this).children().children().children(".calendar-workout-item").each(function(){
+	        				weeklyDurations.push([$(week).attr("data-week-number"), $(this).attr("data-workout-duration")]);
+	        			});
+	        		});
+
+	        		$(".weekly-table-week").each(function(){
+	        			var week = this
+	        			,	weeklyDurationTotal = 0;
+		        		
+		        		$(week).children().children(".duration-total").html("Duration total: 0 hrs");
+
+		        		_(weeklyDurations).each(function(weeklyDurationItem){
+		        			if(weeklyDurationItem[0] == $(week).attr("data-week-number")){
+		        				weeklyDurationTotal += parseFloat(weeklyDurationItem[1]);
+		        			}
+		        			$(week).children().children(".duration-total").html("Duration total: " + weeklyDurationTotal + "hrs");
+		        		});
+	        		});
 	        	}
 	        }
 	    };
