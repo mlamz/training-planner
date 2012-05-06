@@ -1,7 +1,10 @@
-var express       =   require('express'),
-    passport      =   require('passport'),
-    util          =   require('util'),
-    LocalStrategy =   require('passport-local').Strategy;
+var   express           =   require('express')
+  ,   passport          =   require('passport')
+  ,   util              =   require('util')
+  ,   port              =   process.env.PORT || 3000
+  ,   mongoose          =   require('mongoose')
+  ,   LocalStrategy     =   require('passport-local').Strategy
+  ,   workoutController =   require('./controllers/workoutController');
   
 
 var users = [
@@ -51,6 +54,9 @@ passport.use(new LocalStrategy(
   }
 ));
 
+mongoose.connect('mongodb://'+process.env.MONGOLABS_USER+':'+process.env.MONGOLABS_PASSWORD+'@ds033037.mongolab.com:33037/training-planner');
+
+
 var app = express.createServer();
 
 app.configure(function() {
@@ -66,7 +72,6 @@ app.configure(function() {
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
-
 
 app.get('/', function(req, res){
   res.render('index', { user: req.user });
@@ -91,8 +96,12 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
-console.log("server started on port 3000");
+app.post('/workouts', function(req, res){
+  workoutController.index(req, res);
+});
+
+app.listen(port);
+console.log("server started");
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }

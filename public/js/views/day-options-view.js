@@ -31,6 +31,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     		          })
                 ,   self = this;
     			this.options.collection.add(workout);
+                workout.save();
 
     			$('#day-options-add-workout-form').fadeOut("fast", function(){
     				self.updateWorkouts();
