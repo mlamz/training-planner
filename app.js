@@ -100,6 +100,12 @@ app.post('/workouts', function(req, res){
   workoutController.index(req, res);
 });
 
+app.get('/workouts', function(req, res){
+  workoutController.findAll(function(workouts){
+    res.send(workouts);
+  });
+});
+
 app.listen(port);
 console.log("server started");
 
