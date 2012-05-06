@@ -5,10 +5,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     		el:$('#day-options'),
     		initialize: function() {
                 this.updateWorkouts();
-    			this.render();
-    		},
-    		render: function(){
-    			$(this.el).html($("#day-options-template").html());
     		},
     		events: {
     			"click .close-button": "close",
@@ -38,14 +34,17 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     			});
     		},
             updateWorkouts: function(){
+                $('#day-options-add-workout-form').hide();
                $("#workouts").html("");
                 _(this.options.collection.models).each(function(workout){
                     var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration') }
-                    ,   template = _.template( $("#day-options-workout-list-template").html(), workoutDetails );
+                    ,   template = _.template( $("#day-options-workout-list-template").html().replace(new RegExp('&lt;', 'g'),'<').replace(new RegExp('&gt;', 'g'),'>'), workoutDetails );
 
-                    if (workout.get('date') == this.options.date){
+                    if (dateFormat(workout.get('date'), "mmmm dd yyyy") == dateFormat(this.options.date, "mmmm dd yyyy")){
+                        console.log(template);
                         $("#workouts").append(template);
                     }
+                    
                 }, this); 
             }
     	});

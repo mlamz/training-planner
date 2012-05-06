@@ -16,7 +16,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 	        			this.collection = new WorkoutCollection();
 	        			this.collection.fetch({
 	        				success: function(){
-    							console.log("workouts found post fetch", self.collection.models);
     							self.render();
 								self.populateCalendar(thisYear);
 							}
@@ -38,7 +37,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 
 	        			$("#day-options-date").html(formattedDate);
 	        			$('#day-options').attr("data-date", date);
-	        			$('#day-options').fadeIn("fast");
+	        			$('#day-options').show();
 	        		},
 	        		selectYear: function(e) {
 	        			populateCalendarDates($(e.currentTarget).val());
@@ -61,9 +60,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
                     		,   template;
 
                     		workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration') };
-                    		console.log("workout date", workoutDate);
-                    		console.log("workout details", workoutDetails);
-                    		console.log("workoutTableDayElement", workoutTableDayElement);
 
                     		$("#calendar-workout-item-template").html(
                     			$("#calendar-workout-item-template").html().replace(new RegExp('&lt;', 'g'),'<').replace(new RegExp('&gt;', 'g'),'>')
