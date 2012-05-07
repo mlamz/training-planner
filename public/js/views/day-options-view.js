@@ -28,13 +28,16 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     		          })
                 ,   self = this;
     			
-                workout.save(
-                    {},
+                workout.save({},
                     {
                         success: function(model, response){
                             self.options.collection.add(workout);
-                            $('#day-options-add-workout-form').fadeOut("fast", function(){
-                                self.updateWorkouts();
+                            self.options.collection.fetch({
+                                success: function(){
+                                    $('#day-options-add-workout-form').fadeOut("fast", function(){
+                                        self.updateWorkouts();
+                                    });
+                                }
                             });
                         },
                         error: function(model, response){ console.log("model error", model, "response", response);}
@@ -44,12 +47,17 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
             deleteWorkout: function(e){
                 var workoutId = $(e.currentTarget).parent().attr("data-workout-id")
                 ,   self = this;
+                console.log("***DELETING WORKOUT");
+                console.log("current workouts", this.options.collection.models);
                 _(this.options.collection.models).each(function(workout){
                     if (workout.get('_id') == workoutId){
                         console.log("workout to delete found", workout);
                         workout.destroy({success: function(model, response) {
                             console.log("workout destroyed", model, response);
                             self.updateWorkouts();
+                        },
+                        error: function(model, response){
+                            console.log("error deleting workout", model, response);
                         }});
                     }
                 });
