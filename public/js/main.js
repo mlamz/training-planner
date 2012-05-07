@@ -5,6 +5,7 @@ require.config({
         backbone:   'libs/backbone/backbone',
         text:       'libs/require/text',
         json2:      'libs/json/json2',
+        encoder: 	"libs/encoder/encoder", 
         templates:   '../templates'
     }
 
@@ -12,11 +13,10 @@ require.config({
 
 require([	'date/date-format', 
 			'date/custom-date-functions', 
-			'models/workout', 
 			'collections/workout-collection', 
 			'views/weekly-table-view'
 		], 
-		function(dateFormat, customDateFunctions, workoutModel, workoutCollection, weeklyTableView) {
+		function(dateFormat, customDateFunctions, workoutCollection, weeklyTableView) {
 		    customDateFunctions.initialize();
 		    weeklyTableView.initialize();
 		});

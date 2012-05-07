@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collections/workout-collection'], 
-	function($, _, Backbone, router, Workout, WorkoutCollection) {
+define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout', 'collections/workout-collection'], 
+	function($, _, Backbone, router, Encoder, Workout, WorkoutCollection) {
 
     	var DayOptionsView = Backbone.View.extend({
     		el:$('#day-options'),
@@ -65,7 +65,8 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
                 _(this.options.collection.models).each(function(workout){
 
                     var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration'), workout_id: workout.get('_id') }
-                    ,   template = _.template( $("#day-options-workout-list-template").html().replace(new RegExp('&lt;', 'g'),'<').replace(new RegExp('&gt;', 'g'),'>'), workoutDetails );
+                    ,   template = _.template(Encoder.htmlDecode($("#day-options-workout-list-template").html()), workoutDetails );
+                    
                     if (dateFormat(workout.get('date'), "mediumDate") == dateFormat(this.options.date, "mediumDate")){
                         $("#workouts").append(template);
                     }

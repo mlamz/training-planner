@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collections/workout-collection', 'views/day-options-view'], 
-	function($, _, Backbone, router, Workout, WorkoutCollection, DayOptionsView) {
+define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout', 'collections/workout-collection', 'views/day-options-view'], 
+	function($, _, Backbone, router, Encoder, Workout, WorkoutCollection, DayOptionsView) {
 
 	    return {
 	        initialize: function() {
@@ -61,11 +61,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 
                     		workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration') };
 
-                    		$("#calendar-workout-item-template").html(
-                    			$("#calendar-workout-item-template").html().replace(new RegExp('&lt;', 'g'),'<').replace(new RegExp('&gt;', 'g'),'>')
-                    		);
-
-                    		template = _.template($("#calendar-workout-item-template").html(), workoutDetails );
+                    		template = _.template(Encoder.htmlDecode($("#calendar-workout-item-template").html()), workoutDetails );
 	        				if (workoutTableDayElement != null){
 								workoutTableDayElement.children(".workout-data")
 									.append(template);
