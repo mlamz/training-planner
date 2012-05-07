@@ -97,7 +97,7 @@ app.get('/logout', function(req, res){
 });
 
 app.post('/workouts', function(req, res){
-  workoutController.index(req, res);
+  workoutController.addWorkout(req, res);
 });
 
 app.get('/workouts', function(req, res){

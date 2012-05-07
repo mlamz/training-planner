@@ -2,20 +2,22 @@ var Workout = require('../models/workout');
 
 module.exports = 
 {
-    index : function index(req, res){
+    addWorkout : function addWorkout(req, res){
     	var workout = new Workout({  
     		type: req.body.type,
     		duration: req.body.duration,
     		date: req.body.date
     	});
     	workout.save(function(err) { 
-    		console.log(err); 
+    		if (err != null){
+                console.log(err);
+            }; 
+            res.send(workout);
     	});
+
     },
     findAll: function findAll(callback){
-        console.log("****FETCHING WORKOUTS******");
         Workout.find({}, function(err, workouts){
-            console.log("****FOUND WORKOUTS******", workouts);
             callback(workouts);
         });
     }

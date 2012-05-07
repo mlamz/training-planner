@@ -45,4 +45,5 @@
 
 
 script#day-options-workout-list-template(type='text/template')
-	li.calendar-workout-item(data-workout-type='<%= workout_type %>',data-workout-duration='<%= workout_duration %>') <%= workout_type %>, <%= workout_duration %>hrs
+	li.calendar-workout-item(data-workout-type='<%= workout_type %>',data-workout-duration='<%= workout_duration %>',data-workout-id='<%= workout_id %>') <%= workout_type %>, <%= workout_duration %>hrs
+		button.delete-workout delete

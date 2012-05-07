@@ -9,7 +9,8 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     		events: {
     			"click .close-button": "close",
     			"click #add-workout" : "showAddWorkoutForm",
-    			"click #submit-workout" : "submitWorkout"
+    			"click #submit-workout" : "submitWorkout",
+                "click button.delete-workout" : "deleteWorkout"
     		},
     		close: function() {
     			$('#day-options').fadeOut("fast");
@@ -26,20 +27,32 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
         				date: this.options.date
     		          })
                 ,   self = this;
-    			this.options.collection.add(workout);
-                workout.save();
-
-    			$('#day-options-add-workout-form').fadeOut("fast", function(){
-    				self.updateWorkouts();
-    			});
+    			
+                workout.save(
+                    {},
+                    {
+                        success: function(model, response){
+                            self.options.collection.add(workout);
+                            $('#day-options-add-workout-form').fadeOut("fast", function(){
+                                self.updateWorkouts();
+                            });
+                        },
+                        error: function(model, response){ console.log("model error", model, "response", response);}
+                    });
+    			
     		},
+            deleteWorkout: function(e){
+                console.log($(e.currentTarget));
+            },
             updateWorkouts: function(){
                 $('#day-options-add-workout-form').hide();
                $("#workouts").html("");
                 _(this.options.collection.models).each(function(workout){
-                    var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration') }
+
+                    var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration'), workout_id: workout.get('_id') }
                     ,   template = _.template( $("#day-options-workout-list-template").html().replace(new RegExp('&lt;', 'g'),'<').replace(new RegExp('&gt;', 'g'),'>'), workoutDetails );
                     if (dateFormat(workout.get('date'), "mediumDate") == dateFormat(this.options.date, "mediumDate")){
+                        console.log("workout id", workoutDetails.workout_id);
                         $("#workouts").append(template);
                     }
                     

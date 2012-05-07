@@ -75,12 +75,16 @@ h5
 	padding-top: 1px;
 	padding-left: 3px;
 }
-ul#workouts .calendar-workout-item
+ul#workouts li.calendar-workout-item
 {
 	list-style: none;
 	margin-left: -40px;
 	padding-left: 5px;
 	margin-bottom: 2px;
+}
+li.calendar-workout-item button.delete-workout
+{
+	float: right;
 }
 .today
 {
