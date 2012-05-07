@@ -59,6 +59,11 @@ h5
 	line-height: 0.9em;
 	margin-bottom: 5px;
 }
+.calendar-workout-item
+{
+	border: solid 1px #577A02;
+	background-color: #9ABCD9;
+}
 .weekly-table-day .calendar-workout-item
 {
 	font-size: 0.7em;
@@ -66,11 +71,16 @@ h5
 	line-height: 0.9em;
 	width: 105px;
 	height: 11px;
-	border: solid 1px #577A02;
 	margin-bottom: 1px;
-	background-color: #9ABCD9;
 	padding-top: 1px;
 	padding-left: 3px;
+}
+ul#workouts .calendar-workout-item
+{
+	list-style: none;
+	margin-left: -40px;
+	padding-left: 5px;
+	margin-bottom: 2px;
 }
 .today
 {
