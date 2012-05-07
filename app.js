@@ -65,7 +65,6 @@ app.delete('/workouts/:id', function(req, res){
 });
 
 app.post('/users', function(req, res){
-  console.log("posting user");
   userController.createUser(req, res);
 });
 

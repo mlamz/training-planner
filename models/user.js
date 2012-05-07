@@ -4,7 +4,8 @@ var mongoose = require('mongoose')
 User = new mongoose.Schema({
 		email: String,
 		passwordHash: String,
-		createdAt: Date 
+		createdAt: Date,
+		friendlyName: String
 });
 
 mongoose.model('User', User);

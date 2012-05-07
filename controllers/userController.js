@@ -54,8 +54,9 @@ function findByEmail(email, fn) {
 function createUser(req, res){
 	var user = new User({
 		email: req.body.email,
-		passwordHash: getHash(hash),
-		name: req.body.name
+		passwordHash: getHash(req.body.password),
+		friendlyName: req.body.friendlyName,
+		createdAt: new Date()
 	});
 	user.save(function(err){
 		if(err != null){
