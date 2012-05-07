@@ -39,9 +39,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
                 _(this.options.collection.models).each(function(workout){
                     var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration') }
                     ,   template = _.template( $("#day-options-workout-list-template").html().replace(new RegExp('&lt;', 'g'),'<').replace(new RegExp('&gt;', 'g'),'>'), workoutDetails );
-
-                    if (dateFormat(workout.get('date'), "mmmm dd yyyy") == dateFormat(this.options.date, "mmmm dd yyyy")){
-                        console.log(template);
+                    if (dateFormat(workout.get('date'), "mediumDate") == dateFormat(this.options.date, "mediumDate")){
                         $("#workouts").append(template);
                     }
                     

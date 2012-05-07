@@ -55,7 +55,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     					$(".weekly-table-day").children(".workout-data").html("");
 	        			_(this.collection.models).each(function(workout){
 	        				var workoutDate = workout.get('date')
-	        				,	workoutTableDayElement = $(".weekly-table-day[data-date='" + dateFormat(workoutDate, "mmmm dd yyyy") + "']")
+	        				,	workoutTableDayElement = $(".weekly-table-day[data-date='" + dateFormat(workoutDate, "mediumDate") + "']")
 	        				,	workoutDetails
                     		,   template;
 
@@ -91,14 +91,14 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
 	        				var dataDayValue = $(this).attr('data-day');
 	        				var daysToAdd = parseInt(dataDayValue) + (-1 * firstSunday - 1);
 	        				var dateOfThisDay = firstJan.addDays(daysToAdd);
-	        				$(this).attr('data-date', dateFormat(dateOfThisDay, "mmmm dd yyyy"));
+	        				$(this).attr('data-date', dateFormat(dateOfThisDay, "mediumDate"));
 	        				$(this).children(".date").html(dateFormat(dateOfThisDay, "mmmm d"));
 	        			});
 
 	        		$(".weekly-table-day").removeClass("today");
 
 	        		if (thisYear == new Date().getFullYear()){
-	        			todaysDayElement = $(".weekly-table-day[data-date*='" + dateFormat(new Date(), "mmmm dd yyyy") +"']");
+	        			todaysDayElement = $(".weekly-table-day[data-date*='" + dateFormat(new Date(), "mediumDate") +"']");
         				todaysDayElement.addClass("today");
         			}
 	        	}
