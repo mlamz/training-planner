@@ -1,12 +1,12 @@
 var	passport          =   require('passport')
 ,  	LocalStrategy     =   require('passport-local').Strategy
 ,	User = require('../models/user').User
-,	users = [ { id: 1, name: 'michael', passwordHash: '993c16c5adda9cbb9fb78de3a067c00fa287094b', email: 'michael@michaellam.co.uk' } ]
+,	users = [ { _id: 1, name: 'michael', passwordHash: '993c16c5adda9cbb9fb78de3a067c00fa287094b', email: 'michael@michaellam.co.uk' } ]
 ,	crypto = require('crypto');
 
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -16,20 +16,21 @@ passport.deserializeUser(function(id, done) {
 });
 
 function findById(id, fn) {
-	var idx = id - 1;
-	if (users[idx]) {
-		fn(null, users[idx]);
-	} 
-	else {
-		fn(new Error('User ' + id + ' does not exist'));
-	}
+	User.findById(id, function (err, user){
+  		if (user != null){
+  			fn(null, user);
+  		}
+  		else {
+  			fn(new Error('User ' + id + ' does not exist'));
+  		}
+	});
 };
 
 function initializePassport(){
 	passport.use(new LocalStrategy(
 	  function(email, password, done) {
 	    process.nextTick(function () {
-	      findByUsername(email, function(err, user) {
+	      findByEmail(email, function(err, user) {
 	        if (err) { return done(err); }
 	        if (!user) { return done(null, false, { message: 'Unknown user ' + email }); }
 	        if (user.passwordHash != getHash(password)) { return done(null, false, { message: 'Invalid password' }); }
@@ -40,14 +41,15 @@ function initializePassport(){
 	));
 }
 
-function findByUsername(email, fn) {
-	for (var i = 0, len = users.length; i < len; i++) {
-		var user = users[i];
-		if (user.email === email) {
-		  return fn(null, user);
+function findByEmail(email, fn) {
+	User.findOne({ email: email}, function (err, user){
+		if (user != null){
+			console.log(user);
+			return fn(null, user);
+		} else {
+			return fn(null, null);
 		}
-	}
-	return fn(null, null);
+	});
 }
 
 function createUser(req, res){
