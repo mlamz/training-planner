@@ -7,31 +7,9 @@ var   express           =   require('express')
   ,   workoutController =   require('./controllers/workoutController')
   ,   userController =   require('./controllers/userController');
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  userController.findById(id, function (err, user) {
-    done(err, user);
-  });
-});
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    process.nextTick(function () {
-      userController.findByUsername(username, function(err, user) {
-        if (err) { return done(err); }
-        if (!user) { return done(null, false, { message: 'Unknown user ' + username }); }
-        if (user.password != password) { return done(null, false, { message: 'Invalid password' }); }
-        return done(null, user);
-      })
-    });
-  }
-));
+userController.initialize();
 
 mongoose.connect('mongodb://'+process.env.MONGOLABS_USER+':'+process.env.MONGOLABS_PASSWORD+'@ds033037.mongolab.com:33037/training-planner');
-
 
 var app = express.createServer();
 
