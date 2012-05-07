@@ -1,8 +1,8 @@
 var	passport          =   require('passport')
 ,  	LocalStrategy     =   require('passport-local').Strategy
-,	users = [
-    { id: 1, username: 'michael', password: 'password', email: 'michael@michaellam.co.uk' }
-];
+,	User = require('../models/user').User
+,	users = [ { id: 1, username: 'michael', password: 'password', email: 'michael@michaellam.co.uk' } ]
+,	crypto = require('crypto');
 
 
 passport.serializeUser(function(user, done) {
@@ -50,6 +50,24 @@ function findByUsername(username, fn) {
 	return fn(null, null);
 }
 
+function createUser(req, res){
+	console.log("creating user with " + req.body.email + " and " + req.body.password + "and name " + req.body.name);
+	var hash = crypto.createHmac('sha1', 'somesalt').update(req.body.password).digest('hex');
+	console.log("hash is " + hash);
+	var user = new User({
+		email: req.body.email,
+		passwordHash: hash,
+		name: req.body.name
+	});
+	user.save(function(err){
+		if(err != null){
+			console.log(err);
+		}
+		res.send(user);
+	});
+}
+
 module.exports = {
-	initialize: initializePassport
+	initialize: initializePassport,
+	createUser: createUser
 }

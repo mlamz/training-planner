@@ -64,6 +64,11 @@ app.delete('/workouts/:id', function(req, res){
   workoutController.deleteWorkout(req, res);
 });
 
+app.post('/users', function(req, res){
+  console.log("posting user");
+  userController.createUser(req, res);
+});
+
 app.listen(port);
 console.log("server started");
 
