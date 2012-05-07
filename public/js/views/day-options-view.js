@@ -42,11 +42,15 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     			
     		},
             deleteWorkout: function(e){
-                var workoutId = $(e.currentTarget).parent().attr("data-workout-id");
+                var workoutId = $(e.currentTarget).parent().attr("data-workout-id")
+                ,   self = this;
                 _(this.options.collection.models).each(function(workout){
                     if (workout.get('_id') == workoutId){
                         console.log("workout to delete found", workout);
-                        workout.destroy();
+                        workout.destroy({success: function(model, response) {
+                            console.log("workout destroyed", model, response);
+                            self.updateWorkouts();
+                        }});
                     }
                 });
             },

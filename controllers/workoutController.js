@@ -19,10 +19,10 @@ module.exports =
     deleteWorkout: function deleteWorkout(req, res){
         console.log("**********************deleting workout", req.params.id);
         Workout.findById(req.params.id, function(err, workout){
-            workout.remove({}, function(err){
-                console.log(err);
-                res.send({});
-            });
+            console.log(err);
+            workout.remove();
+            res.send(workout);
+            
             
         });
     },
