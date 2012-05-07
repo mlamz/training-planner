@@ -16,6 +16,16 @@ module.exports =
     	});
 
     },
+    deleteWorkout: function deleteWorkout(req, res){
+        console.log("**********************deleting workout", req.params.id);
+        Workout.findById(req.params.id, function(err, workout){
+            workout.remove({}, function(err){
+                console.log(err);
+                res.send({});
+            });
+            
+        });
+    },
     findAll: function findAll(callback){
         Workout.find({}, function(err, workouts){
             callback(workouts);

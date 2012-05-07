@@ -42,7 +42,13 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
     			
     		},
             deleteWorkout: function(e){
-                console.log($(e.currentTarget));
+                var workoutId = $(e.currentTarget).parent().attr("data-workout-id");
+                _(this.options.collection.models).each(function(workout){
+                    if (workout.get('_id') == workoutId){
+                        console.log("workout to delete found", workout);
+                        workout.destroy();
+                    }
+                });
             },
             updateWorkouts: function(){
                 $('#day-options-add-workout-form').hide();

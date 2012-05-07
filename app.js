@@ -106,6 +106,10 @@ app.get('/workouts', function(req, res){
   });
 });
 
+app.delete('/workouts/:id', function(req, res){
+  workoutController.deleteWorkout(req, res);
+});
+
 app.listen(port);
 console.log("server started");
 
