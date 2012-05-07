@@ -6,7 +6,8 @@ module.exports =
     	var workout = new Workout({  
     		type: req.body.type,
     		duration: req.body.duration,
-    		date: req.body.date
+    		date: req.body.date,
+            userId: req.user._id
     	});
     	workout.save(function(err) { 
     		if (err != null){
@@ -25,8 +26,8 @@ module.exports =
             
         });
     },
-    findAll: function findAll(callback){
-        Workout.find({}, function(err, workouts){
+    findAllForUser: function findAllForUser(req, res, callback){
+        Workout.find({ userId: req.user._id }, function(err, workouts){
             callback(workouts);
         });
     }

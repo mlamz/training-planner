@@ -55,7 +55,7 @@ app.post('/workouts', function(req, res){
 });
 
 app.get('/workouts', function(req, res){
-  workoutController.findAll(function(workouts){
+  workoutController.findAllForUser(req, res, function(workouts){
     res.send(workouts);
   });
 });
