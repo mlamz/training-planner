@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router'], 
-	function($, _, Backbone, router) {
+define([], 
+	function() {
 
 	    return {
 	        initialize: function() {
