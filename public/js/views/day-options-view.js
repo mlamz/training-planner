@@ -47,13 +47,10 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
             deleteWorkout: function(e){
                 var workoutId = $(e.currentTarget).parent().attr("data-workout-id")
                 ,   self = this;
-                console.log("***DELETING WORKOUT");
-                console.log("current workouts", this.options.collection.models);
+
                 _(this.options.collection.models).each(function(workout){
                     if (workout.get('_id') == workoutId){
-                        console.log("workout to delete found", workout);
                         workout.destroy({success: function(model, response) {
-                            console.log("workout destroyed", model, response);
                             self.updateWorkouts();
                         },
                         error: function(model, response){
@@ -70,7 +67,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout', 'collect
                     var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration'), workout_id: workout.get('_id') }
                     ,   template = _.template( $("#day-options-workout-list-template").html().replace(new RegExp('&lt;', 'g'),'<').replace(new RegExp('&gt;', 'g'),'>'), workoutDetails );
                     if (dateFormat(workout.get('date'), "mediumDate") == dateFormat(this.options.date, "mediumDate")){
-                        console.log("workout id", workoutDetails.workout_id);
                         $("#workouts").append(template);
                     }
                     

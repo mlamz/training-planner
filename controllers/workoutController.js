@@ -17,8 +17,6 @@ module.exports =
 
     },
     deleteWorkout: function deleteWorkout(req, res){
-        console.log("**********************deleting workout", req.params.id);
-
         Workout.findById(req.params.id, function(err, workout){
             console.log(err);
             workout.remove();
