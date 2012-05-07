@@ -59,10 +59,33 @@ h5
 	line-height: 0.9em;
 	margin-bottom: 5px;
 }
+.workout-type-race
+{
+	background-color: #E37974;
+}
+.workout-type-training
+{
+	background-color: #9ABCD9;
+}
+.workout-type-sportive
+{
+	background-color: #FCD58B;
+}
+.workout-type-time
+{
+	background-color: #F0F090;
+}
+.workout-type-commute
+{
+	background-color: #B6DEA9;
+}
+.workout-type-recovery
+{
+	background-color: White;
+}
 .calendar-workout-item
 {
 	border: solid 1px #577A02;
-	background-color: #9ABCD9;
 }
 .weekly-table-day .calendar-workout-item
 {

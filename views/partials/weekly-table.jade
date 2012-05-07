@@ -38,4 +38,4 @@ script#weekly-table-template(type='text/template')
 	- }
 
 script#calendar-workout-item-template(type='text/template')
-	span.calendar-workout-item(data-workout-type="<%= workout_type %>",data-workout-duration='<%= workout_duration %>') <%= workout_type %>, <%= workout_duration %>hrs
+	span.calendar-workout-item(class='workout-type-<%= workout_type %>',data-workout-type="<%= workout_type %>",data-workout-duration='<%= workout_duration %>') <%= workout_type %>, <%= workout_duration %>hrs
