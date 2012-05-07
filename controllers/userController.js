@@ -1,7 +1,6 @@
 var	passport          =   require('passport')
 ,  	LocalStrategy     =   require('passport-local').Strategy
 ,	User = require('../models/user').User
-,	users = [ { _id: 1, name: 'michael', passwordHash: '993c16c5adda9cbb9fb78de3a067c00fa287094b', email: 'michael@michaellam.co.uk' } ]
 ,	crypto = require('crypto');
 
 
