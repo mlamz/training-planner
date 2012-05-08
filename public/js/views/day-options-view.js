@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout', 'collections/workout-collection'], 
-	function($, _, Backbone, router, Encoder, Workout, WorkoutCollection) {
+define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout', 'collections/workout-collection', 'views/add-workout-view'], 
+	function($, _, Backbone, router, Encoder, Workout, WorkoutCollection, AddWorkoutView) {
 
     	var DayOptionsView = Backbone.View.extend({
     		el:$('#day-options'),
@@ -9,40 +9,21 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
     		events: {
     			"click .close-button": "close",
     			"click #add-workout" : "showAddWorkoutForm",
-    			"click #submit-workout" : "submitWorkout",
                 "click button.delete-workout" : "deleteWorkout"
     		},
     		close: function() {
-    			$('#day-options').fadeOut("fast");
+                if(this.addWorkoutView != null){ 
+                    this.addWorkoutView.el.unbind();
+                }
+                $('#day-options').fadeOut("fast");
 		        $(this.el).unbind();
                 this.options.parentView.populateCalendarWorkouts();
     		},
     		showAddWorkoutForm: function(){
-    			$('#day-options-add-workout-form').fadeIn("fast");
-    		},
-    		submitWorkout: function(){
-    			var workout = new Workout({
-        				type : $("select#workout-type").val(),
-        				duration: $("select#workout-duration").val(),
-        				date: this.options.date
-    		          })
-                ,   self = this;
-    			
-                workout.save({},
-                    {
-                        success: function(model, response){
-                            self.options.collection.add(workout);
-                            self.options.collection.fetch({
-                                success: function(){
-                                    $('#day-options-add-workout-form').fadeOut("fast", function(){
-                                        self.updateWorkouts();
-                                    });
-                                }
-                            });
-                        },
-                        error: function(model, response){ console.log("model error", model, "response", response);}
-                    });
-    			
+                if (!this.addWorkoutView){
+                    this.addWorkoutView = new AddWorkoutView({ collection: this.options.collection, parentView: this, date: this.options.date });
+                }
+                this.addWorkoutView.el.show();
     		},
             deleteWorkout: function(e){
                 var workoutId = $(e.currentTarget).parent().attr("data-workout-id")
