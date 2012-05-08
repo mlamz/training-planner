@@ -13,14 +13,12 @@ require.config({
 
 require([	'date/date-format', 
 			'date/custom-date-functions',
-            'models/app', 
 			'collections/workout-collection',
 			'views/weekly-table-view',
             'views/sign-up-view'
 		], 
-		function(dateFormat, customDateFunctions, app, workoutCollection, weeklyTableView, signUpView) {
+		function(dateFormat, customDateFunctions, workoutCollection, weeklyTableView, signUpView) {
 		    customDateFunctions.initialize();
-            app.initialize();
             signUpView.initialize();
 		    weeklyTableView.initialize();
             

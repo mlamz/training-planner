@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout', 'collections/workout-collection', 'views/day-options-view'], 
-	function($, _, Backbone, router, Encoder, Workout, WorkoutCollection, DayOptionsView) {
+define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/app', 'models/workout', 'collections/workout-collection', 'views/day-options-view'], 
+	function($, _, Backbone, router, Encoder, App, Workout, WorkoutCollection, DayOptionsView) {
 
 	    return {
 	        initialize: function() {
@@ -13,7 +13,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
 	        			,	firstSunday
 	        			,	todaysDayElement;
 
-	        			window.App.getUser(function(user){
+	        			App.getUser(function(user){
 	        				if (user){
 			        			self.collection = new WorkoutCollection();
 			        			self.collection.fetch({
