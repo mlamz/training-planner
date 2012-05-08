@@ -16,7 +16,7 @@ passport.deserializeUser(function(id, done) {
 
 function findById(id, fn) {
 	User.findById(id, function (err, user){
-  		if (user != null){
+  		if (user){
   			fn(null, user);
   		}
   		else {
@@ -42,7 +42,7 @@ function initializePassport(){
 
 function findByEmail(email, fn) {
 	User.findOne({ email: email}, function (err, user){
-		if (user != null){
+		if (user){
 			console.log(user);
 			return fn(null, user);
 		} else {
@@ -51,7 +51,7 @@ function findByEmail(email, fn) {
 	});
 }
 
-function createUser(req, res){
+function createUser(req, res, callback){
 	var user = new User({
 		email: req.body.email,
 		passwordHash: getHash(req.body.password),
@@ -59,10 +59,14 @@ function createUser(req, res){
 		createdAt: new Date()
 	});
 	user.save(function(err){
-		if(err != null){
+		if(err){
 			console.log(err);
 		}
-		res.send(user);
+		if(!callback) {
+			res.send(user);
+		} else {
+			callback(user, req, res);
+		}
 	});
 }
 

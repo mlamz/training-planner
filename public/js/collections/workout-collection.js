@@ -3,7 +3,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'models/workout'],
 
     	var WorkoutCollection = Backbone.Collection.extend({
     		model: Workout,
-    		url: '/workouts'
+    		url: '/workout'
     	});
     	return WorkoutCollection;
     

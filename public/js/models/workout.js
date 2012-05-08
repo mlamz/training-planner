@@ -1,7 +1,7 @@
 define(['jquery', 'underscore', 'backbone', 'router'], 
 	function($, _, Backbone, router) {
     	var Workout = Backbone.Model.extend({
-    		urlRoot: '/workouts',
+    		urlRoot: '/workout',
     		initialize: function(attributes){
     			this.id = attributes['_id'];
     		},

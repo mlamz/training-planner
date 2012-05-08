@@ -50,11 +50,11 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.post('/workouts', function(req, res){
+app.post('/workout', function(req, res){
   workoutController.addWorkout(req, res);
 });
 
-app.get('/workouts', function(req, res){
+app.get('/workout', function(req, res){
   workoutController.findAllForUser(req, res, function(workouts){
     res.send(workouts);
   });
@@ -74,9 +74,21 @@ app.get('/user/current', function(req, res){
   res.send(req.user);
 })
 
-app.post('/users', function(req, res){
-  userController.createUser(req, res);
+app.post('/user', function(req, res){
+  userController.createUser(req, res, null);
 });
+
+app.post('/signup', function(req, res){
+  userController.createUser(req, res, function(user, req, res){   
+    req.logIn(user, function(err) {
+        if (err) { console.log(err); }
+        res.redirect('/');
+      });
+
+
+
+  });
+})
 
 app.listen(port);
 console.log("server started");
