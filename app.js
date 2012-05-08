@@ -60,7 +60,13 @@ app.get('/workouts', function(req, res){
   });
 });
 
-app.delete('/workouts/:id', function(req, res){
+app.get('/workout/:id', function(req, res){
+  workoutController.findOneForUser(req, res, function(workout){
+    res.send(workout);
+  });
+});
+
+app.delete('/workout/:id', function(req, res){
   workoutController.deleteWorkout(req, res);
 });
 

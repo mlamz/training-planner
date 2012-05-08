@@ -29,14 +29,19 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
                 var workoutId = $(e.currentTarget).parent().attr("data-workout-id")
                 ,   self = this;
 
-                _(this.options.collection.models).each(function(workout){
-                    if (workout.get('_id') == workoutId){
-                        workout.destroy({success: function(model, response) {
-                            self.render();
-                        },
-                        error: function(model, response){
-                            console.log("error deleting workout", model, response);
-                        }});
+                var workout = new Workout({_id: workoutId});
+                workout.fetch({success: function(workout, response){
+                    if (workout != null){
+                        workout.destroy({
+                            success: function(model, response) {
+                                self.options.collection.remove(model);
+                                self.render();
+                            },
+                            error: function(model, response){
+                                console.log("error deleting", model, response)
+                            }
+                        });
+                    }
                     }
                 });
             },

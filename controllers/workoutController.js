@@ -30,5 +30,10 @@ module.exports =
         Workout.find({ userId: req.user._id }, function(err, workouts){
             callback(workouts);
         });
+    },
+    findOneForUser: function findOneForUser(req, res, callback){
+        Workout.findOne({ _id: req.params.id }, function(err, workout){
+            callback(workout);
+        })
     }
 }

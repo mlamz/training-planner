@@ -5,8 +5,6 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
             el: $('#day-options-add-workout-form'),
             initialize: function(){
                 $(this.el).show();
-                
-                console.log("add workout view loaded");
             },
             events: {
                 "click #submit-workout" : "submitWorkout"
