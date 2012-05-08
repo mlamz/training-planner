@@ -27,36 +27,38 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
     		},
             deleteWorkout: function(e){
                 var workoutId = $(e.currentTarget).parent().attr("data-workout-id")
-                ,   self = this;
+                ,   self = this
+                ,   workout = new Workout({_id: workoutId});
 
-                var workout = new Workout({_id: workoutId});
-                workout.fetch({success: function(workout, response){
-                    if (workout != null){
-                        workout.destroy({
-                            success: function(model, response) {
-                                self.options.collection.remove(model);
-                                self.render();
-                            },
-                            error: function(model, response){
-                                console.log("error deleting", model, response)
-                            }
-                        });
-                    }
-                    }
+                workout.fetch({
+                    success: function(workout, response){
+                        if (workout != null){
+                            workout.destroy({
+                                success: function(model, response) {
+                                    self.options.collection.remove(model);
+                                    self.render();
+                                },
+                                error: function(model, response){
+                                    console.log("error deleting", model, response)
+                                }
+                            });
+                        }
+                     }
                 });
             },
             render: function(){
                 $('#day-options-add-workout-form').hide();
-               $("#workouts").html("");
-                _(this.options.collection.models).each(function(workout){
+                $("#workouts").html("");
 
+               var workouts = _.filter(this.options.collection.models, function (model){
+                    return dateFormat(model.get('date'), "mediumDate") == dateFormat(this.options.date, "mediumDate");
+               }, this);
+
+                _(workouts).each(function(workout){
                     var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration'), workout_id: workout.get('_id') }
                     ,   template = _.template(Encoder.htmlDecode($("#day-options-workout-list-template").html()), workoutDetails );
                     
-                    if (dateFormat(workout.get('date'), "mediumDate") == dateFormat(this.options.date, "mediumDate")){
-                        $("#workouts").append(template);
-                    }
-                    
+                    $("#workouts").append(template);
                 }, this); 
             }
     	});
