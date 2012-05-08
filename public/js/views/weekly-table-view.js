@@ -116,12 +116,16 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
 		        		
 		        		$(week).children().children(".duration-total").html("Duration total: 0 hrs");
 
-		        		_(weeklyDurations).each(function(weeklyDurationItem){
-		        			if(weeklyDurationItem[0] == $(week).attr("data-week-number")){
-		        				weeklyDurationTotal += parseFloat(weeklyDurationItem[1]);
-		        			}
-		        			$(week).children().children(".duration-total").html("Duration total: " + weeklyDurationTotal + "hrs");
-		        		});
+		        		var durationsForThisWeek = _.filter(weeklyDurations, function(weeklyDurationItem){
+		        			return weeklyDurationItem[0] == $(this).attr("data-week-number");
+		        		},this);
+
+		        		_(durationsForThisWeek).each(function(weeklyDurationItem){
+		        			weeklyDurationTotal += parseFloat(weeklyDurationItem[1]);
+        				});
+		        			
+	        			$(week).children().children(".duration-total").html("Duration total: " + weeklyDurationTotal + "hrs");
+		        		
 	        		});
 	        	}
 	        }
