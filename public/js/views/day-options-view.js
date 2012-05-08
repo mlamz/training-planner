@@ -4,7 +4,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
     	var DayOptionsView = Backbone.View.extend({
     		el:$('#day-options'),
     		initialize: function() {
-                this.updateWorkouts();
+                this.render();
     		},
     		events: {
     			"click .close-button": "close",
@@ -32,7 +32,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
                 _(this.options.collection.models).each(function(workout){
                     if (workout.get('_id') == workoutId){
                         workout.destroy({success: function(model, response) {
-                            self.updateWorkouts();
+                            self.render();
                         },
                         error: function(model, response){
                             console.log("error deleting workout", model, response);
@@ -40,7 +40,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
                     }
                 });
             },
-            updateWorkouts: function(){
+            render: function(){
                 $('#day-options-add-workout-form').hide();
                $("#workouts").html("");
                 _(this.options.collection.models).each(function(workout){

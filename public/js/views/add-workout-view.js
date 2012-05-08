@@ -26,7 +26,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
                             self.options.collection.fetch({
                                 success: function(){
                                     $('#day-options-add-workout-form').hide(function(){
-                                        self.options.parentView.updateWorkouts();
+                                        self.options.parentView.render();
                                     });
                                 }
                             });
