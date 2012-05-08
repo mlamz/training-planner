@@ -21,5 +21,4 @@ require([	'date/date-format',
 		    customDateFunctions.initialize();
             signUpView.initialize();
 		    weeklyTableView.initialize();
-            
 		});

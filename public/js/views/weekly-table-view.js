@@ -6,12 +6,8 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/app', '
 	        	var WeeklyTableView = Backbone.View.extend({
 	        		el:$('#weekly-table'),
 	        		initialize: function() {
-	        			var today 		= new Date()
-	        			,	thisYear 	= new Date().getFullYear()
-	        			,	self = this
-	        			,	firstJan
-	        			,	firstSunday
-	        			,	todaysDayElement;
+	        			var	thisYear 	= new Date().getFullYear()
+	        			,	self = this;
 
 	        			App.getUser(function(user){
 	        				if (user){
