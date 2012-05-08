@@ -29,7 +29,9 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
                                 }
                             });
                         },
-                        error: function(model, response){ console.log("model error", model, "response", response);}
+                        error: function(model, response){ 
+                            console.log("model error", model, "response", response);
+                        }
                     });
             }
         });

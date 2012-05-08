@@ -1,7 +1,7 @@
 body, .body-style 
 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.9em;
+    font-family: ff-meta-web-pro-condensed;
+    font-size: 1em;
     background-color: #96D100;
     margin: 0;
     line-height: 1.8em;
@@ -16,6 +16,11 @@ body, .body-style
 	padding: 10px 45px;
 	border-left: solid 3px #577A02;
 	border-right: solid 3px #577A02;
+}
+h1
+{
+	font-family: ronnia-condensed;
+	font-weight: bold;
 }
 h5
 {
@@ -39,6 +44,9 @@ h5
 	height: 100px;
 	border: solid 1px #577A02;
 	margin: 2px;
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 0.9em;
+	line-height: 1.7em;
 }
 .weekly-table-day
 {
