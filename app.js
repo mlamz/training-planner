@@ -81,12 +81,11 @@ app.post('/user', function(req, res){
 app.post('/signup', function(req, res){
   userController.createUser(req, res, function(user, req, res){   
     req.logIn(user, function(err) {
-        if (err) { console.log(err); }
+        if (err) { 
+          console.log(err);
+        }
         res.redirect('/');
       });
-
-
-
   });
 })
 
