@@ -12,11 +12,16 @@ require.config({
 });
 
 require([	'date/date-format', 
-			'date/custom-date-functions', 
-			'collections/workout-collection', 
-			'views/weekly-table-view'
+			'date/custom-date-functions',
+            'models/app', 
+			'collections/workout-collection',
+			'views/weekly-table-view',
+            'views/sign-up-view'
 		], 
-		function(dateFormat, customDateFunctions, workoutCollection, weeklyTableView) {
+		function(dateFormat, customDateFunctions, app, workoutCollection, weeklyTableView, signUpView) {
 		    customDateFunctions.initialize();
+            app.initialize();
+            signUpView.initialize();
 		    weeklyTableView.initialize();
+            
 		});

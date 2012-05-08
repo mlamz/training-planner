@@ -13,13 +13,17 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout
 	        			,	firstSunday
 	        			,	todaysDayElement;
 
-	        			this.collection = new WorkoutCollection();
-	        			this.collection.fetch({
-	        				success: function(){
-    							self.render();
-								self.populateCalendar(thisYear);
-							}
-						});
+	        			window.App.getUser(function(user){
+	        				if (user){
+			        			self.collection = new WorkoutCollection();
+			        			self.collection.fetch({
+			        				success: function(){
+		    							self.render();
+										self.populateCalendar(thisYear);
+									}
+								});
+		        			}
+	        			});
 	        				        			
 	        		},
 	        		render: function(){

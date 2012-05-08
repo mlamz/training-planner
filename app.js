@@ -70,6 +70,10 @@ app.delete('/workout/:id', function(req, res){
   workoutController.deleteWorkout(req, res);
 });
 
+app.get('/user/current', function(req, res){
+  res.send(req.user);
+})
+
 app.post('/users', function(req, res){
   userController.createUser(req, res);
 });
