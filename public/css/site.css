@@ -269,6 +269,20 @@ li.calendar-workout-item button.delete-workout
 {
 	background-color: #ABCC5A;
 }
+.validation-message
+{
+	display:none;
+	width: 200px;
+	height: 20px;
+	padding-top: 0;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 3px;
+	margin-top:4px;
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #7A2300;
+}
 #day-options-control
 {
 	width: 673px;

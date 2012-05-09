@@ -20,7 +20,8 @@ body
 		!= body
 
 script#sign-up-template(type='text/template')
-	form(method='post',action='/signup')
+	
+	form#sign-up-form(method='post',action='/signup')
 		div.column.form-label
 			label(name='name') Name
 		div.column
@@ -38,20 +39,23 @@ script#sign-up-template(type='text/template')
 		div.clear
 		div.column.submit-form
 			input#sign-up-submit(type='submit',value="sign up")
+			div#sign-up-validation.validation-message
 		div.clear
 
+
 script#sign-in-template(type='text/template')
-	form(action='/login',method='post')
+	form#sign-in-form(action='/login',method='post')
 		div.column.form-label
-				label(name='name') Name
+				label(name='name') Email
 		div.column
-			input(type='text',name='username')
+			input#sign-in-email(type='text',name='username')
 		div.clear
 		div.column.form-label
 			label(name='password') Password
 		div.column
-			input(type='password',name='password')
+			input#sign-in-password(type='password',name='password')
 		div.clear
 		div.column.submit-form
 			input(type='submit',value='sign in')
+			div#sign-in-validation.validation-message
 		div.clear

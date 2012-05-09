@@ -80,9 +80,10 @@ define(['jquery', 'underscore', 'backbone', 'encoder', 'date/custom-date-functio
 	        			firstSunday = firstJan.getDay();
 
 	        			$(".weekly-table-day").each(function(){
-	        				var dataDayValue = $(this).attr('data-day');
-	        				var daysToAdd = parseInt(dataDayValue) + (-1 * firstSunday - 1);
-	        				var dateOfThisDay = firstJan.addDays(daysToAdd);
+	        				var dataDayValue = $(this).attr('data-day')
+	        				,	daysToAdd = parseInt(dataDayValue) + (-1 * firstSunday - 1)
+	        				,	dateOfThisDay = firstJan.addDays(daysToAdd);
+	        				
 	        				$(this).attr('data-date', dateFormat(dateOfThisDay, "mediumDate"));
 	        				$(this).children(".date").html(dateFormat(dateOfThisDay, "mmmm d"));
 	        			});
