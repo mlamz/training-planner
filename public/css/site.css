@@ -273,11 +273,11 @@ li.calendar-workout-item button.delete-workout
 #day-options-navigation button
 {
 	width: 87px;
-	height: 16px;
+	height: 40px;
 	border: solid 1px #577A02;
 	margin: 1px 1px;
-	background-color: #eeeeee;
-	font-size: 0.7em;
+	background-color: #CFEB8A;
+	font-size: 0.9em;
 	cursor: pointer;
 	cursor: hand;
 }
