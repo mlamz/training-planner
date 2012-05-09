@@ -1,7 +1,8 @@
 define(['models/app',
 		'views/weekly-table-view',
-        'views/sign-up-view'], 
-	function(App, weeklyTableView, signUpView) {
+        'views/sign-up-view',
+        'views/sign-in-view'], 
+	function(App, weeklyTableView, signUpView, signInView) {
 		return {
 			initialize: function(){
 				App.getUser(function(user){
@@ -9,7 +10,8 @@ define(['models/app',
     					weeklyTableView.initialize();
         			} 
         			else {
-        			signUpView.initialize();
+        				signUpView.initialize();
+        				signInView.initialize();
         			}
         		});
 			}

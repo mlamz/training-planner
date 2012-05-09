@@ -6,16 +6,11 @@ head
 
 body
 	div.page
-		- if (!user) {
+		- if (user) {
 			p
 				a(href='/') Home
 				span  | 
-				a(href='/login') Log In
-		- } else {
-			p
-				a(href='/') Home
-				span  | 
-				a(href='/account') Account
+				a(href='/account') Your Account
 				span  | 
 				a(href='/logout') Log out
 		- }
@@ -43,4 +38,20 @@ script#sign-up-template(type='text/template')
 		div.clear
 		div.column.submit-form
 			input#sign-up-submit(type='submit',value="sign up")
+		div.clear
+
+script#sign-in-template(type='text/template')
+	form(action='/login',method='post')
+		div.column.form-label
+				label(name='name') Name
+		div.column
+			input(type='text',name='username')
+		div.clear
+		div.column.form-label
+			label(name='password') Password
+		div.column
+			input(type='password',name='password')
+		div.clear
+		div.column.submit-form
+			input(type='submit',value='sign in')
 		div.clear

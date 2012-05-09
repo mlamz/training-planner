@@ -6,6 +6,26 @@ body, .body-style
     margin: 0;
     line-height: 1.8em;
 }
+.forms-container
+{
+	width: 330px;
+	border: solid 1px #577A02;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	height: 190px;
+}
+#sign-in-container
+{
+	margin-left: 10px;
+}
+p.test-credentials
+{
+	line-height: 0.8em;
+}
+p.test-credentials span
+{
+	color: #666666;
+}
 .form-label
 {
 	width: 100px;
@@ -231,7 +251,7 @@ li.calendar-workout-item button.delete-workout
 	height: 352px;
 	border: solid 1px #577A02;
 	margin: 4px 4px;
-	background-color: #eeeeee;
+	background-color: White;
 	padding: 4px 4px;
 }
 #day-options-navigation button
@@ -255,9 +275,8 @@ li.calendar-workout-item button.delete-workout
 	height: 352px;
 	border: solid 1px #577A02;
 	margin: 4px 4px;
-	background-color: #eeeeee;
 	padding: 4px 4px;
-
+	background-color: White;
 }
 #day-options-add-workout-form
 {
