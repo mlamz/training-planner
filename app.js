@@ -29,13 +29,16 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res){
-  res.render('index', { user: req.user, signUpValidationMessage: "" });
+  res.render('index', { 
+    user: req.user, 
+    signUpValidationMessage: "",
+    signInValidationMessage: "" });
 });
 
-app.get('/login', auth.login);
+app.get('/loginFailed', auth.login);
 
 app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
+  passport.authenticate('local', { failureRedirect: '/loginFailed', failureFlash: true }),
   function(req, res) {
     res.redirect('/');
   });

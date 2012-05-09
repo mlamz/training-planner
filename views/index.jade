@@ -1,7 +1,7 @@
 - if (!user) {
 p Create a yearly training plan based around your key races, sportives and events.
 
-p If you want to give it a whirl before signing up, please sign in with this test account.
+p Want to give it a whirl before signing up? Sign in with this test account.
 
 p.test-credentials Email: 
 	span tryme@test.com
@@ -53,6 +53,9 @@ p.test-credentials Password:
 				div.column.submit-form
 					input(type='submit',value='sign in')
 					div#sign-in-validation.validation-message
+						- if (signInValidationMessage){
+							=signInValidationMessage
+						- }
 				div.clear
 
 	div.clear
