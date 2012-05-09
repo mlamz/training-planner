@@ -17,10 +17,48 @@ p.test-credentials Password:
 	div.forms-container.column
 		h3 Sign up
 		#sign-up
+			form#sign-up-form(method='post',action='/signup')
+				div.column.form-label
+					label(name='name') Name
+				div.column
+					input#friendlyName(type='text',name='friendlyName')
+				div.clear
+				div.column.form-label
+					label(name='email') Email
+				div.column
+					input#username(type='text',name='email')
+				div.clear
+				div.column.form-label
+					label(name='password') Password
+				div.column
+					input#password(type='password',name='password')
+				div.clear
+				div.column.submit-form
+					input#sign-up-submit(type='submit',value="sign up")
+					div#sign-up-validation.validation-message
+						- if (signUpValidationMessage){
+							=signUpValidationMessage
+						- }
+				div.clear
 
 	div#sign-in-container.forms-container.column
 		h3 Sign in
 		#sign-in
+			form#sign-in-form(action='/login',method='post')
+				div.column.form-label
+						label(name='name') Email
+				div.column
+					input#sign-in-email(type='text',name='username')
+				div.clear
+				div.column.form-label
+					label(name='password') Password
+				div.column
+					input#sign-in-password(type='password',name='password')
+				div.clear
+				div.column.submit-form
+					input(type='submit',value='sign in')
+					div#sign-in-validation.validation-message
+				div.clear
 
 	div.clear
 

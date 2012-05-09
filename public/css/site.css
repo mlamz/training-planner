@@ -6,6 +6,22 @@ body, .body-style
     margin: 0;
     line-height: 1.8em;
 }
+#weekly-table-loading-message 
+{
+	text-align:center;
+	width: 1000px;
+}
+
+#weekly-table-loading-message div
+{
+	font-size: 1.5em;
+	padding: 5px;
+	color: #577A02;
+}
+h1,h2,h3,h4,h5
+{
+	color: #334700;
+}
 .forms-container
 {
 	width: 330px;

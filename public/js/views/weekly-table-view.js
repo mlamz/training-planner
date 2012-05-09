@@ -19,6 +19,7 @@ define(['jquery', 'underscore', 'backbone', 'encoder', 'date/custom-date-functio
 	        				        			
 	        		},
 	        		render: function(){
+	        			$("#weekly-table-loading-message").hide();
 	        			$(this.el).html($("#weekly-table-template").html());
 	        		},
 	        		events: {
@@ -83,7 +84,7 @@ define(['jquery', 'underscore', 'backbone', 'encoder', 'date/custom-date-functio
 	        				var dataDayValue = $(this).attr('data-day')
 	        				,	daysToAdd = parseInt(dataDayValue) + (-1 * firstSunday - 1)
 	        				,	dateOfThisDay = firstJan.addDays(daysToAdd);
-	        				
+
 	        				$(this).attr('data-date', dateFormat(dateOfThisDay, "mediumDate"));
 	        				$(this).children(".date").html(dateFormat(dateOfThisDay, "mmmm d"));
 	        			});

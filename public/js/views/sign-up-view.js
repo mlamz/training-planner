@@ -5,12 +5,6 @@ define(['jquery', 'underscore', 'backbone'],
 				var SignUpView = Backbone.View.extend({
 					el: $("#sign-up"),
 					initialize: function(){
-						this.render();
-					},
-					render: function(){
-						var template = _.template($("#sign-up-template").html());
-						$("#sign-up-validation").html('');
-						this.el.html(template);
 					},
 					events: {
 						"click #sign-up-submit": "signUpSubmit"

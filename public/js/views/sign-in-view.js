@@ -5,12 +5,6 @@ define(['jquery', 'underscore', 'backbone'],
 				var SignInView = Backbone.View.extend({
 					el: $("#sign-in"),
 					initialize: function(){
-						this.render();
-					},
-					render: function(){
-						var template = _.template($("#sign-in-template").html());
-						$("#sign-in-validation").html('');
-						this.el.html(template);
 					},
 					events: {
 						"click input[type=submit]" : "submitForm"
@@ -30,10 +24,9 @@ define(['jquery', 'underscore', 'backbone'],
 							isValid = false;
 						}
 						else if (!emailRegex.test(email)){
-							$("#sign-in-validation").html("Email regex");
+							$("#sign-in-validation").html("Please enter a valid email");
 							isValid = false;
-						} 
-
+						}
 
 						if (isValid) {
 							$("#sign-in-form").submit();
