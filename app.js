@@ -3,6 +3,7 @@ var   express           =   require('express')
   ,   util              =   require('util')
   ,   port              =   process.env.PORT || 3000
   ,   mongoose          =   require('mongoose')
+  ,   auth              =   require('./lib/auth')
   ,   LocalStrategy     =   require('passport-local').Strategy
   ,   workoutController =   require('./controllers/workoutController')
   ,   userController =   require('./controllers/userController');
@@ -31,13 +32,9 @@ app.get('/', function(req, res){
   res.render('index', { user: req.user, signUpValidationMessage: "" });
 });
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
-});
+app.get('/account', ensureAuthenticated, auth.account);
 
-app.get('/login', function(req, res){
-  res.render('login', { user: req.user, message: req.flash('error') });
-});
+app.get('/login', auth.login);
 
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),

@@ -51,8 +51,15 @@ define(['jquery', 'underscore', 'backbone', 'encoder', 'models/workout', 'views/
                 $("#workouts").html("");
 
                var workouts = _.filter(this.options.collection.models, function (model){
-                    return dateFormat(model.get('date'), "mediumDate") == dateFormat(this.options.date, "mediumDate");
+                    return dateFormat(model.get('date'), "mediumDate") === dateFormat(this.options.date, "mediumDate");
                }, this);
+
+               if (workouts.length == 0){
+                    $("#day-options-control-no-workouts-message").show();
+               }
+               else {
+                    $("#day-options-control-no-workouts-message").hide();
+               }
 
                 _(workouts).each(function(workout){
                     var workoutDetails = { workout_type: workout.get('type'), workout_duration: workout.get('duration'), workout_id: workout.get('_id') }
