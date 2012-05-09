@@ -26,19 +26,21 @@ body
 
 script#sign-up-template(type='text/template')
 	form(method='post',action='/signup')
-		div.column
+		div.column.form-label
 			label(name='name') Name
 		div.column
 			input#friendlyName(type='text',name='friendlyName')
 		div.clear
-		div.column
+		div.column.form-label
 			label(name='email') Email
 		div.column
 			input#username(type='text',name='email')
 		div.clear
-		div.column
+		div.column.form-label
 			label(name='password') Password
 		div.column
-			input#password(type='text',name='password')
+			input#password(type='password',name='password')
 		div.clear
-		input#sign-up-submit(type='submit',value="sign up")
+		div.column.submit-form
+			input#sign-up-submit(type='submit',value="sign up")
+		div.clear

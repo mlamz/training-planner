@@ -6,6 +6,37 @@ body, .body-style
     margin: 0;
     line-height: 1.8em;
 }
+.form-label
+{
+	width: 100px;
+	padding-top:3px;
+}
+.submit-form
+{
+	padding-left: 100px;
+}
+input[type=text],input[type=password]
+{
+	border: solid 1px #577A02;
+	line-height: 1.5em;
+	width: 200px;
+	padding: 2px;
+	margin-bottom: 2px;
+}
+input[type=submit]
+{
+	border: solid 1px #577A02;
+	width: 80px;
+	height: 25px;
+	background-color: #C1E070;
+	cursor: hand;
+	cursor: pointer;
+	margin-top:2px;
+}
+input[type=submit]:hover
+{
+	background-color: #96D100;
+}
 .page
 {
 	background-color: White;
@@ -16,6 +47,7 @@ body, .body-style
 	padding: 10px 45px;
 	border-left: solid 3px #577A02;
 	border-right: solid 3px #577A02;
+	border-bottom: solid 3px #577A02;
 }
 h1
 {
