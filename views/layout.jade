@@ -40,6 +40,9 @@ script#sign-up-template(type='text/template')
 		div.column.submit-form
 			input#sign-up-submit(type='submit',value="sign up")
 			div#sign-up-validation.validation-message
+				- if (signUpValidationMessage){
+					=signUpValidationMessage
+				- }
 		div.clear
 
 

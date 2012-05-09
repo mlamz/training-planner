@@ -271,7 +271,6 @@ li.calendar-workout-item button.delete-workout
 }
 .validation-message
 {
-	display:none;
 	width: 200px;
 	height: 20px;
 	padding-top: 0;

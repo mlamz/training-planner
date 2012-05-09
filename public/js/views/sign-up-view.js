@@ -9,6 +9,7 @@ define(['jquery', 'underscore', 'backbone'],
 					},
 					render: function(){
 						var template = _.template($("#sign-up-template").html());
+						$("#sign-up-validation").html('');
 						this.el.html(template);
 					},
 					events: {
@@ -42,7 +43,6 @@ define(['jquery', 'underscore', 'backbone'],
 							$("#sign-up-form").submit();
 						}
 						else {
-							$("#sign-up-validation").show();
 							e.preventDefault();
 						}
 					}

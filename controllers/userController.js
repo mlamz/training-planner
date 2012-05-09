@@ -58,14 +58,21 @@ function createUser(req, res, callback){
 		friendlyName: req.body.friendlyName,
 		createdAt: new Date()
 	});
-	user.save(function(err){
-		if(err){
-			console.log(err);
-		}
-		if(!callback) {
-			res.send(user);
+
+	User.findOne({ email: req.body.email}, function (err, user){
+		if (user){
+			res.render('index', { user: req.user, signUpValidationMessage: 'this email is already taken' });
 		} else {
-			callback(user, req, res);
+			user.save(function(err){
+				if(err){
+					console.log(err);
+				}
+				if(!callback) {
+					res.send(user);
+				} else {
+					callback(user, req, res);
+				}
+			});
 		}
 	});
 }

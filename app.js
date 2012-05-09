@@ -28,7 +28,7 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res){
-  res.render('index', { user: req.user });
+  res.render('index', { user: req.user, signUpValidationMessage: "" });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
