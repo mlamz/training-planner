@@ -27,8 +27,11 @@ define(['jquery', 'underscore', 'backbone', 'encoder', 'date/custom-date-functio
 	        			"click .weekly-table-day": "openDayOptions"	        			
 	        		},
 	        		openDayOptions: function(e) {
-	        			var date 			= new Date(Date.parse($(e.currentTarget).attr('data-date')))
-	        			,	formattedDate 	= dateFormat(date, "dddd, mmmm dS, yyyy");
+	        			console.log($(e.currentTarget).attr('data-date'));
+	        			var date 			= new Date(Date.parse($(e.currentTarget).attr('data-date')));
+
+	        			console.log(date);
+	        			var	formattedDate 	= dateFormat(date, "dddd, mmmm dS, yyyy");
 
 	        			new DayOptionsView({  date: date, collection: this.collection, parentView: this });
 

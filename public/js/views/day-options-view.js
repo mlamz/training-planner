@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'encoder', 'models/workout', 'views/add-workout-view'], 
-	function($, _, Backbone, Encoder, Workout, AddWorkoutView) {
+define(['jquery', 'underscore', 'backbone', 'encoder','date/date-format', 'models/workout', 'views/add-workout-view'], 
+	function($, _, Backbone, Encoder, dateFormatter, Workout, AddWorkoutView) {
 
     	var DayOptionsView = Backbone.View.extend({
     		el:$('#day-options'),
@@ -49,7 +49,7 @@ define(['jquery', 'underscore', 'backbone', 'encoder', 'models/workout', 'views/
             render: function(){
                 $('#day-options-add-workout-form').hide();
                 $("#workouts").html("");
-
+                console.log("rendering day options");
                var workouts = _.filter(this.options.collection.models, function (model){
                     return dateFormat(model.get('date'), "mediumDate") === dateFormat(this.options.date, "mediumDate");
                }, this);
