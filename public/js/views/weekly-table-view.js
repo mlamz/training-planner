@@ -7,7 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/app', '
 	        		el:$('#weekly-table'),
 	        		initialize: function() {
 	        			var	thisYear 	= new Date().getFullYear()
-	        			,	self = this;
+	        			,	self 		= this;
 
 	        			App.getUser(function(user){
 	        				if (user){

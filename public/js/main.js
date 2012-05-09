@@ -11,14 +11,7 @@ require.config({
 
 });
 
-require([	'date/date-format', 
-			'date/custom-date-functions',
-			'collections/workout-collection',
-			'views/weekly-table-view',
-            'views/sign-up-view'
-		], 
-		function(dateFormat, customDateFunctions, workoutCollection, weeklyTableView, signUpView) {
-		    customDateFunctions.initialize();
-            signUpView.initialize();
-		    weeklyTableView.initialize();
+require(['view-coordinator'], 
+		function(viewCoordinator) {
+            viewCoordinator.initialize();
 		});

@@ -1,7 +1,7 @@
 body, .body-style 
 {
-    font-family: ff-meta-web-pro-condensed;
-    font-size: 1em;
+    font-family: 'pt sans', sans-serif;
+    font-size: 0.9em;
     background-color: #96D100;
     margin: 0;
     line-height: 1.8em;
@@ -19,7 +19,7 @@ body, .body-style
 }
 h1
 {
-	font-family: ronnia-condensed;
+	font-family: 'pt sans', sans-serif;
 	font-weight: bold;
 }
 h5
