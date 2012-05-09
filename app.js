@@ -32,8 +32,6 @@ app.get('/', function(req, res){
   res.render('index', { user: req.user, signUpValidationMessage: "" });
 });
 
-app.get('/account', ensureAuthenticated, auth.account);
-
 app.get('/login', auth.login);
 
 app.post('/login', 
