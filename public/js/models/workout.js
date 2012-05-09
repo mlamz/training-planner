@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router'], 
-	function($, _, Backbone, router) {
+define(['backbone'], 
+	function(Backbone) {
     	var Workout = Backbone.Model.extend({
     		urlRoot: '/workout',
     		initialize: function(attributes){

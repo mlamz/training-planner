@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/app', 'models/workout', 'collections/workout-collection', 'views/day-options-view'], 
-	function($, _, Backbone, router, Encoder, App, Workout, WorkoutCollection, DayOptionsView) {
+define(['jquery', 'underscore', 'backbone', 'encoder', 'date/custom-date-functions', 'date/date-format', 'collections/workout-collection', 'views/day-options-view'], 
+	function($, _, Backbone, Encoder, customDateFunctions, dateFormatter, WorkoutCollection, DayOptionsView) {
 
 	    return {
 	        initialize: function() {
@@ -9,17 +9,13 @@ define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/app', '
 	        			var	thisYear 	= new Date().getFullYear()
 	        			,	self 		= this;
 
-	        			App.getUser(function(user){
-	        				if (user){
-			        			self.collection = new WorkoutCollection();
-			        			self.collection.fetch({
-			        				success: function(){
-		    							self.render();
-										self.populateCalendar(thisYear);
-									}
-								});
-		        			}
-	        			});
+	        			this.collection = new WorkoutCollection();
+	        			this.collection.fetch({
+	        				success: function(){
+    							self.render();
+								self.populateCalendar(thisYear);
+							}
+						});
 	        				        			
 	        		},
 	        		render: function(){

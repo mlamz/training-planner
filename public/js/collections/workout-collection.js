@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router', 'models/workout'], 
-	function($, _, Backbone, router, Workout) {
+define(['backbone', 'models/workout'], 
+	function(Backbone, Workout) {
 
     	var WorkoutCollection = Backbone.Collection.extend({
     		model: Workout,

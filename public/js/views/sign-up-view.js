@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router'], 
-	function($, _, Backbone, router) {
+define(['jquery', 'underscore', 'backbone'], 
+	function($, _, Backbone) {
 		return {
 			initialize: function(){
 				var SignUpView = Backbone.View.extend({

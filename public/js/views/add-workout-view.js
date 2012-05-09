@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'router', 'encoder', 'models/workout', 'collections/workout-collection'], 
-	function($, _, Backbone, router, Encoder, Workout, WorkoutCollection) {
+define(['jquery', 'backbone', 'models/workout'], 
+	function($, Backbone, Workout) {
 
         var AddWorkoutView = Backbone.View.extend({
             el: $('#day-options-add-workout-form'),
