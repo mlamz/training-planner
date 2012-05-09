@@ -77,12 +77,12 @@ define(['jquery', 'underscore', 'backbone', 'encoder', 'date/custom-date-functio
 	        	}
 
 	        	function populateCalendarDates(thisYear){
-	        		firstJan = new Date(thisYear,0,1);
-	        			firstSunday = firstJan.getDay();
+	        		var firstJan = new Date(thisYear,0,1)
+	        		,	firstJanDayNumber = firstJan.getDay();
 
 	        			$(".weekly-table-day").each(function(){
 	        				var dataDayValue = $(this).attr('data-day')
-	        				,	daysToAdd = parseInt(dataDayValue) + (-1 * firstSunday - 1)
+	        				,	daysToAdd = parseInt(dataDayValue) + (-1 * firstJanDayNumber - 1)
 	        				,	dateOfThisDay = firstJan.addDays(daysToAdd);
 
 	        				$(this).attr('data-date', dateFormat(dateOfThisDay, "mediumDate"));
